@@ -1,0 +1,114 @@
+# implementation ideas:
+# run this past sentient to verify vector based approach is better than timeseries
+# get better nutrient data from gen hydro catalogue
+# run this past arielle to see if this is a good default basil recipe
+# check this against dan's grow data to verify this is a good default basil recipe
+# evaluate plausability of auto-generating this recipe format from dan's grow data
+# run this past x10 people on the team to see if this is an intuitive way to create recipes
+# ask people on the forum if they like this method of creating recipes?
+
+# why is this idea interesting?
+# 1. it is a vector based approach so we can use it to feed our ml models with sentient (assumption)
+# 2. it is simple to understand so users can more quickly begin tinkering with environmental 
+#    input conditions in a consistent way
+
+# extention of idea
+# this should be accompanied by an output vector that has all of the automatically generated
+# organismal expression metrics as well as the qualitative user entered metrics (we should
+# ask users at the end of a grow to give as many metrics as possible...wll expand in a 
+# results.yaml example file
+
+recipe_name: default basil
+recipe_format: vector 1.0
+version: 1.0
+optimization: [general purpose]
+date_created: 2016-12-13
+author: openag
+author_id: 457028937405687305698723059
+recipe_id: 472309485702983470592837405
+
+stages:
+  - germination:
+      days: 7 # days
+      day:
+        hours: 0 # hours
+      night:
+        hours: 24 # hours
+        air_temperature: 30 # celcius
+        humidity: 75 # % relative
+        co2: 1000 # ppm
+        ph: 6 # ph
+        ec: 0 # ppm
+        red_light: 0 # par
+        blue_light: 0 # par
+        white_light: 0 # par
+  - early:
+      days: 14 # days
+      day:
+        hours: 18 # hours
+        air_temperature: 20 # celcius
+        humidity: 50 # relative
+        co2: 2000 # ppm
+        ph: 6.5 # ph
+        ec: 100 # ppm
+        red_light: 200 # ppm
+        blue_light: 100 # par
+        white_light: 0 # par
+      night:
+        hours: 6 # hours
+        air_temperature: 20 # celcius
+        humidity: 50 # relative
+        co2: 2000 # ppm
+        ph: 6.5 # ph
+        ec: 100 # ppm
+        red_light: 200 # ppm
+        blue_light: 100 # par
+        white_light: 0 # par
+  - middle:
+      days: 14 # days
+      day:
+        hours: 18 # hours
+        air_temperature: 20 # celcius
+        humidity: 50 # relative
+        co2: 2000 # ppm
+        ph: 6.5 # ph
+        nutrient a: 100 # ppm
+        nutrient b: 50 # ppm
+        red_light: 200 # ppm
+        blue_light: 100 # par
+        white_light: 0 # par
+      night:
+        hours: 6 # hours
+        air_temperature: 20 # celcius
+        humidity: 50 # relative
+        co2: 2000 # ppm
+        ph: 6.5 # ph
+        nutrient a: 100 # ppm
+        nutrient b: 50 # ppm
+        red_light: 200 # ppm
+        blue_light: 100 # par
+        white_light: 0 # par
+  - late:
+      days: 14 # days
+      day:
+        hours: 18 # hours
+        air_temperature: 20 # celcius
+        humidity: 50 # relative
+        co2: 2000 # ppm
+        ph: 6.5 # ph
+        nutrient a: 100 # ppm
+        nutrient b: 50 # ppm
+        red_light: 200 # ppm
+        blue_light: 100 # par
+        white_light: 0 # par
+      night:
+        hours: 6 # hours
+        air_temperature: 20 # celcius
+        humidity: 50 # relative
+        co2: 2000 # ppm
+        ph: 6.5 # ph
+        ec: 100 # ppm
+        red_light: 200 # par
+        blue_light: 100 # par
+        white_light: 0 # par
+...
