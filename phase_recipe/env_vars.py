@@ -1,0 +1,19 @@
+AIR_TEMPERATURE = "air_temperature"
+AIR_HUMIDITY = "air_humidity"
+AIR_CARBON_DIOXIDE = "air_carbon_dioxide"
+WATER_POTENTIAL_HYDROGEN = "water_potential_hydrogen"
+WATER_ELECTRICAL_CONDUCTIVITY = "water_electrical_conductivity"
+LIGHT_INTENSITY_RED = "light_intensity_red"
+LIGHT_INTENSITY_BLUE = "light_intensity_blue"
+LIGHT_INTENSITY_WHITE = "light_intensity_white"
+
+VARIABLES = set((
+    AIR_TEMPERATURE,
+    AIR_HUMIDITY,
+    AIR_CARBON_DIOXIDE,
+    WATER_POTENTIAL_HYDROGEN,
+    WATER_ELECTRICAL_CONDUCTIVITY,
+    LIGHT_INTENSITY_RED,
+    LIGHT_INTENSITY_BLUE,
+    LIGHT_INTENSITY_WHITE,
+))
