@@ -18,12 +18,12 @@
 # ask users at the end of a grow to give as many metrics as possible...wll expand in a 
 # results.yaml example file
 
-recipe_name: default basil
-recipe_format: vector 1.0
-version: 1.0
-optimization: [general purpose]
+recipe_name: "default basil"
+recipe_format: "vector 1.0"
+version: "1.0"
+optimization: ["general purpose"]
 date_created: 2016-12-13
-author: openag
+author: "openag"
 author_id: 457028937405687305698723059
 recipe_id: 472309485702983470592837405
 
@@ -72,8 +72,6 @@ stages:
       air_humidity: 50 # relative
       air_carbon_dioxide: 2000 # ppm
       water_potential_hydrogen: 6.5 # ph
-      nutrient a: 100 # ppm
-      nutrient b: 50 # ppm
       light_intensity_red: 200 # ppm
       light_intensity_blue: 100 # par
       light_intensity_white: 0 # par
@@ -83,8 +81,6 @@ stages:
       air_humidity: 50 # relative
       air_carbon_dioxide: 2000 # ppm
       water_potential_hydrogen: 6.5 # ph
-      nutrient a: 100 # ppm
-      nutrient b: 50 # ppm
       light_intensity_red: 200 # ppm
       light_intensity_blue: 100 # par
       light_intensity_white: 0 # par
@@ -96,8 +92,6 @@ stages:
       air_humidity: 50 # relative
       air_carbon_dioxide: 2000 # ppm
       water_potential_hydrogen: 6.5 # ph
-      nutrient a: 100 # ppm
-      nutrient b: 50 # ppm
       light_intensity_red: 200 # ppm
       light_intensity_blue: 100 # par
       light_intensity_white: 0 # par
