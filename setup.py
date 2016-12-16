@@ -6,13 +6,13 @@ with open(readme_path) as f:
     readme = f.read()
 
 setup(
-    name='openag_phase_recipe',
+    name='openag_phased_recipe',
     version='0.0.1-alpha.1',
     author='Open Agriculture Initiative',
-    description='Tools for working with phase-based recipes',
+    description='Tools for working with phased recipes',
     long_description=readme,
     license="GPL-3.0",
-    url="https://github.com/OpenAgInitiative/openag_phase_recipe",
+    url="https://github.com/OpenAgInitiative/openag_phased_recipe",
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
@@ -27,6 +27,8 @@ setup(
     extras_require={},
     include_package_data=True,
     entry_points={
-        'console_scripts': []
+        'console_scripts': [
+            'openag_phased_to_timeseries=openag_phased_recipe.cli:main'
+        ]
     }
 )

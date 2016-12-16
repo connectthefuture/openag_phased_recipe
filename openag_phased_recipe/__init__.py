@@ -3,30 +3,24 @@ Tools for working with phase-based recipes.
 """
 from yaml import load as loads_yaml
 from json import dumps as dumps_json
-from models import Recipe, Operation
+from models import PhasedRecipe, Operation
 from env_vars import VARIABLES
 
 
-OPERATION_TIMESTEP = 60
+OPERATION_TIMESTEP = 60 # seconds
 
 
-def load_recipe(file_path):
-    """Given a YAML file path, load and validate that file"""
-    with open(file_path, 'r') as f:
-        return Recipe(loads_yaml(f))
-
-
-def read_phase_meta(phase_recipe):
+def read_phase_meta(phased_recipe):
     """
     Read relevant metadata for recipe that does not change across
     recipe formats
     """
     return {
-        "recipe_name": phase_recipe["recipe_name"],
-        "date_created": phase_recipe["date_created"],
-        "author": phase_recipe["author"],
-        "author_id": phase_recipe["author_id"],
-        "_id": phase_recipe["recipe_id"]
+        "recipe_name": phased_recipe["recipe_name"],
+        "date_created": phased_recipe["date_created"],
+        "author": phased_recipe["author"],
+        "author_id": phased_recipe["author_id"],
+        "_id": phased_recipe["recipe_id"]
     }
 
 
@@ -79,9 +73,10 @@ def gen_stages_operations(elapsed, stages):
             yield operation
 
 
-def to_timeseries_recipe(phase_recipe):
-    operations = list(gen_stages_operations(0, phase_recipe["stages"]))
-    meta = read_phase_meta(phase_recipe)
+def to_timeseries_recipe(phased_recipe):
+    phased_recipe = PhasedRecipe(phased_recipe)
+    operations = list(gen_stages_operations(0, phased_recipe["stages"]))
+    meta = read_phase_meta(phased_recipe)
     timeseries_recipe = {
         "format": "simple",
         "version": "1.0",

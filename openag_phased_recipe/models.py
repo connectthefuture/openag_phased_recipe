@@ -1,7 +1,8 @@
 """
 Schemas for phase-based recipe data.
 """
-from voluptuous import Schema, Optional, Required, validators
+from voluptuous import Schema, Optional, Required
+from voluptuous.validators import Coerce
 from env_vars import (
     AIR_TEMPERATURE,
     AIR_HUMIDITY,
@@ -13,31 +14,33 @@ from env_vars import (
     LIGHT_INTENSITY_WHITE
 )
 
-def bounded_percent(x):
+def as_bounded_percent(x):
     """Validate and coerce x into a bounded percentage between 0.0..100.0"""
     x = float(x)
     if x < 0 or x > 100:
         raise ValueError("Percent value {} is out of bounds".format(x))
     return x
 
+coerce_float = Coerce(float)
+coerce_int = Coerce(int)
 
 Phase = Schema({
-    Required("hours", default=12.0): float, # Number of hours
-    Optional(AIR_TEMPERATURE): float, # Celcius
-    Optional(AIR_HUMIDITY): bounded_percent, # % Relative
-    Optional(AIR_CARBON_DIOXIDE): float, # PPM
-    Optional(WATER_POTENTIAL_HYDROGEN): float, # PPM
-    Optional(WATER_ELECTRICAL_CONDUCTIVITY): float, # PPM
-    Optional(LIGHT_INTENSITY_RED): float, # PAR
-    Optional(LIGHT_INTENSITY_BLUE): float, # PAR
-    Optional(LIGHT_INTENSITY_WHITE): float, # PAR
+    Required("hours", default=12.0): coerce_float, # Number of hours
+    Optional(AIR_TEMPERATURE): coerce_float, # Celcius
+    Optional(AIR_HUMIDITY): as_bounded_percent, # % Relative
+    Optional(AIR_CARBON_DIOXIDE): coerce_float, # PPM
+    Optional(WATER_POTENTIAL_HYDROGEN): coerce_float, # PPM
+    Optional(WATER_ELECTRICAL_CONDUCTIVITY): coerce_float, # PPM
+    Optional(LIGHT_INTENSITY_RED): coerce_float, # PAR
+    Optional(LIGHT_INTENSITY_BLUE): coerce_float, # PAR
+    Optional(LIGHT_INTENSITY_WHITE): coerce_float, # PAR
 })
 Phase.__doc__ = """A phase in a recipe."""
 
 
 Stage = Schema({
     Required("name", default="Untitled"): str, # Name of phase
-    Required("days"): float, # Number of days
+    Required("days"): coerce_float, # Number of days
     Required("day"): Phase,
     Required("night"): Phase
 })
@@ -47,19 +50,19 @@ until `days` is complete.
 """
 
 
-Recipe = Schema({
+PhasedRecipe = Schema({
     Required("recipe_name", default="Untitled"): str,
     Required("recipe_format"): str,
     Required("version"): str,
     Optional("optimization"): [str],
-    Optional("date_created"): validators.Datetime,
+    Optional("date_created"): Coerce(str),
     Optional("author"): str,
-    Optional("author_id"): int,
-    Optional("recipe_id"): int,
+    Optional("author_id"): coerce_int,
+    Optional("recipe_id"): coerce_int,
     Required("stages"): [Stage]
 })
-Recipe.__doc__ = """Phase-based recipe"""
+PhasedRecipe.__doc__ = """Phase-based recipe"""
 
 
-Operation = Schema([float, str, float])
+Operation = Schema([coerce_float, str, coerce_float])
 Operation.__doc__ = "An single operation in a time series recipe"
