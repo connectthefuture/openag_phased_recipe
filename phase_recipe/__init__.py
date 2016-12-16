@@ -75,6 +75,7 @@ def gen_stage_operations(elapsed, stage):
 def gen_stages_operations(elapsed, stages):
     for stage in stages:
         for operation in gen_stage_operations(elapsed, stage):
+            elapsed = operation[0]
             yield operation
 
 
